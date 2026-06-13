@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Pong.Entities;
+using Pong.Core;
 
 
 namespace Pong;
@@ -19,6 +20,7 @@ public class Game1 : Game
     private Paddle _player1;
     private Paddle _player2;
     private Ball _ball;
+    private GameState _gameState;
 
 
 
@@ -35,8 +37,7 @@ public class Game1 : Game
         _graphics.PreferredBackBufferHeight = 600;
         _graphics.ApplyChanges();
 
-        // Initialize starting point 
-        //Rectangle(x,y,weight,height)
+        // Initialize Paddle Object
         _player1 = new Paddle(20, 260, Keys.Z, Keys.S);
         _player2 = new Paddle(765, 260, Keys.Up, Keys.Down);
 
@@ -61,9 +62,10 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        _player1.Update(gameTime);
-        _player2.Update(gameTime);
+        
         _ball.Update(gameTime,_player1.Bounds,_player2.Bounds);
+
+        
 
         base.Update(gameTime);
     }
