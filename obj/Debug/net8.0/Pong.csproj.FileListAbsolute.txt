@@ -31,3 +31,5 @@
 /home/kiza/Monogame/Pong/obj/Debug/net8.0/Pong.pdb
 /home/kiza/Monogame/Pong/obj/Debug/net8.0/Pong.genruntimeconfig.cache
 /home/kiza/Monogame/Pong/obj/Debug/net8.0/ref/Pong.dll
+/home/kiza/Monogame/Pong/bin/Debug/net8.0/Content/Score.xnb
+/home/kiza/Monogame/Pong/obj/Debug/net8.0/Pong.sourcelink.json
