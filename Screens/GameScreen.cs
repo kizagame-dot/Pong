@@ -44,7 +44,7 @@ public class GameScreen : IScreen
         _player1 = new Paddle(20, 260, player1Up, player1Down);
         _player2 = new Paddle(765, 260, player2Up, player2Down);
 
-        _ball = new Ball(widthSize, heightSize, _soundManager);
+        _ball = new Ball(widthSize, heightSize, soundManager);
 
 
     }
@@ -76,7 +76,10 @@ public class GameScreen : IScreen
                     _scoreManager.AddPoint(1);
 
                 if(_scoreManager.IsGameOver())
+                {
+                    _soundManager.play("GameOver");
                     _gameState = GameState.GameOver;
+                }
 
                 break;
 
@@ -131,7 +134,7 @@ public class GameScreen : IScreen
                 "GAME OVER : PLAYER 2 WIN",
                   new Vector2(270, 250), Color.LightGoldenrodYellow);
 
-                _spriteBatch.DrawString(_fonts["Message"], "SPACE pour rejouer", new Vector2(190, 320), Color.LightGoldenrodYellow);
+                _spriteBatch.DrawString(_fonts["Message"], "SPACE FOR PLAYING", new Vector2(190, 320), Color.LightGoldenrodYellow);
 
                 break;        
 
