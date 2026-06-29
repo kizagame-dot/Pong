@@ -5,7 +5,7 @@ namespace Pong.Core;
 public enum GameState
 {
     WaitingToStart,
-    Paying,
+    Playing,
     Scored,
     GameOver, 
 }

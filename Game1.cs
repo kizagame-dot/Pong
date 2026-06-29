@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Pong.Entities;
-using Pong.Core;
 using Pong.Managers;
 using Pong.Interface;
 using Pong.Screens;
+using System.Collections.Generic;
 
 
 namespace Pong;
@@ -19,10 +18,11 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     // Texture who will be used for draw all rectangle
     private Texture2D _pixel;
-    private SpriteFont _font;
-    private GameState _gameState;
+    private Dictionary<string, SpriteFont> _fonts;
+
     private ScoreManager _scoreManager;
     private IScreen _currentScreen;
+    
     
 
     
@@ -47,6 +47,7 @@ public class Game1 : Game
         _graphics.PreferredBackBufferHeight = 600;
         _graphics.ApplyChanges();
 
+
                 
         base.Initialize();
     }
@@ -61,13 +62,20 @@ public class Game1 : Game
         //Give a array of color 
         _pixel.SetData(new[] {Color.White});
 
-        _font = Content.Load<SpriteFont>("Score");
+
+        _fonts = new Dictionary<string, SpriteFont>()
+        {
+            {"Score", Content.Load<SpriteFont>("Score")},
+            {"Message",Content.Load<SpriteFont>("Message")}
+        };
 
         _scoreManager = new ScoreManager();
 
+
+
         _currentScreen = new GameScreen(_spriteBatch,
                                         _pixel,
-                                        _font,
+                                        _fonts,
                                         _graphics.PreferredBackBufferWidth,
                                         _graphics.PreferredBackBufferHeight,
                                         _scoreManager,
@@ -78,7 +86,7 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        
+       
         _currentScreen.Update(gameTime);
 
         base.Update(gameTime);

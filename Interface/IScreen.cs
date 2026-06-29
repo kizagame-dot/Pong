@@ -2,6 +2,7 @@ namespace Pong.Interface;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pong.Core;
 using Pong.Screens;
 interface IScreen
 {

@@ -33,3 +33,4 @@
 /home/kiza/Monogame/Pong/obj/Debug/net8.0/ref/Pong.dll
 /home/kiza/Monogame/Pong/bin/Debug/net8.0/Content/Score.xnb
 /home/kiza/Monogame/Pong/obj/Debug/net8.0/Pong.sourcelink.json
+/home/kiza/Monogame/Pong/bin/Debug/net8.0/Content/Message.xnb

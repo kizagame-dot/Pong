@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/home/kiza/Monogame/Pong/Content/Score.spritefont","/home/kiza/Monogame/Pong/Content/bin/DesktopGL/Content/Score.xnb","FontDescriptionProcessor","SpriteFontContent",2005,267289,0.2341315
+"/home/kiza/Monogame/Pong/Content/Message.spritefont","/home/kiza/Monogame/Pong/Content/bin/DesktopGL/Content/Message.xnb","FontDescriptionProcessor","SpriteFontContent",2010,21529,0.1971737
+"/home/kiza/Monogame/Pong/Content/Score.spritefont","/home/kiza/Monogame/Pong/Content/bin/DesktopGL/Content/Score.xnb","FontDescriptionProcessor","SpriteFontContent",2005,267289,0.048866

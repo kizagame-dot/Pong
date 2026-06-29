@@ -6,26 +6,25 @@ namespace Pong.Managers;
 
 public class ScoreManager
 {
-    private int _scorePlayer1;
-    private int _scorePlayer2;
-    public string _textDisplay {get; private set;}
+    private const int WIN_SCORE = 7;
+    public int _scorePlayer1 { get; private set;}
+    public int _scorePlayer2 {get; private set;}
+    public string _textDisplay => $"{_scorePlayer1}     {_scorePlayer2}";
 
     public ScoreManager()
     {
         _scorePlayer1 = 0;
         _scorePlayer2 = 0;
         
-        _textDisplay = $"{_scorePlayer1}     {_scorePlayer2}";
     }
 
     
     public void AddPoint(int currentPlayer)
     {
-        _scorePlayer1 += 1;
 
         if(currentPlayer == 1)
         {
-            _scorePlayer1 += 1;
+            _scorePlayer1 = _scorePlayer1 + 1;
         }
 
         if(currentPlayer == 2)
@@ -42,7 +41,7 @@ public class ScoreManager
 
     public bool IsGameOver()
     {
-        return true;
+        return _scorePlayer1 >= WIN_SCORE || _scorePlayer2 >= WIN_SCORE;
     }
 
 }
