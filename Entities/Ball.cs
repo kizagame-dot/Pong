@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pong.Managers;
 
 namespace Pong.Entities;
 
@@ -15,11 +16,13 @@ public class Ball
     private int _screenWidth;
     private int _screenHeight;
     private Random _rng = new Random();
+    private SoundManager _soundManager;
 
-    public Ball(int screenWidth, int screenHeight)
+    public Ball(int screenWidth, int screenHeight, SoundManager soundManager)
     {
         _screenWidth = screenWidth;
         _screenHeight = screenHeight;
+        _soundManager = soundManager;
         Reset();
 
     }
@@ -53,34 +56,43 @@ public class Ball
         {
             _position.Y = 0;
             _velocity.Y = Math.Abs(_velocity.Y);
+            _soundManager.play("HitWall");
         }
         if(_position.Y + BallSize > _screenHeight)
         {
             _position.Y = _screenHeight - BallSize;
             _velocity.Y = -Math.Abs(_velocity.Y);
+            _soundManager.play("HitWall");
+
         }
 
         // Collision paddle 
         if(Bounds.Intersects(paddleLeft) && _velocity.X < 0)
         {
             ApplyAngle(paddleLeft);
+            _soundManager.play("HitPaddle");
+
         }
 
         if(Bounds.Intersects(paddleRight) && _velocity.X > 0)
         {
             ApplyAngle(paddleRight);
+            _soundManager.play("HitPaddle");
+
 
         }
 
         //Ball quit the screen
         if(_position.X < 0)
         {
+            _soundManager.play("Point");
             Reset();
             return 1;
         }
 
         if(_position.X > _screenWidth)
         {
+            _soundManager.play("Point");
             Reset();
             return -1;
         }

@@ -18,10 +18,10 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     // Texture who will be used for draw all rectangle
     private Texture2D _pixel;
-    private Dictionary<string, SpriteFont> _fonts;
-
-    private ScoreManager _scoreManager;
     private IScreen _currentScreen;
+    private ScoreManager _scoreManager;
+    private SoundManager _soundManager;
+    private Dictionary<string, SpriteFont> _fonts;
     
     
 
@@ -70,6 +70,7 @@ public class Game1 : Game
         };
 
         _scoreManager = new ScoreManager();
+        _soundManager = new SoundManager();
 
 
 
@@ -79,6 +80,7 @@ public class Game1 : Game
                                         _graphics.PreferredBackBufferWidth,
                                         _graphics.PreferredBackBufferHeight,
                                         _scoreManager,
+                                        _soundManager,
                                         Keys.Z, Keys.S,
                                         Keys.Up, Keys.Down);
 

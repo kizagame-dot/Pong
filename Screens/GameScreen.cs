@@ -17,6 +17,7 @@ public class GameScreen : IScreen
 
     private Dictionary<string, SpriteFont> _fonts;
     private ScoreManager _scoreManager;
+    private SoundManager _soundManager;
     private Paddle _player1;
     private Paddle _player2;
     private Ball _ball;
@@ -28,6 +29,7 @@ public class GameScreen : IScreen
     public GameScreen(SpriteBatch spriteBatch, Texture2D pixel, Dictionary<string, SpriteFont> fonts,
                       int widthSize, int heightSize,
                       ScoreManager scoreManager,
+                      SoundManager soundManager,
                       Keys player1Up, Keys player1Down, Keys player2Up, Keys player2Down)
     {
 
@@ -37,11 +39,12 @@ public class GameScreen : IScreen
         _fonts = fonts;
 
         _scoreManager = scoreManager;
+        _soundManager = soundManager;
 
         _player1 = new Paddle(20, 260, player1Up, player1Down);
         _player2 = new Paddle(765, 260, player2Up, player2Down);
 
-        _ball = new Ball(widthSize, heightSize);
+        _ball = new Ball(widthSize, heightSize, _soundManager);
 
 
     }
