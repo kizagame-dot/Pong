@@ -9,10 +9,10 @@ public class Particle
     public Vector2 Position;
     public Vector2 Velocity;
     public Color Color;
-    public float life;
-    public float max_Life;
+    public float Life;
+    public float MaxLife;
     public float Size;
-    public bool isAlive;
+    public bool IsAlive => Life > 0;
 
     public Particle()
     {
@@ -21,6 +21,13 @@ public class Particle
 
     public void Update(float dt)
     {
+        // Move with speed, 
+        Position += Velocity * dt;
 
+        // Slowing 8% by frame
+        Velocity *= 0.92f;
+
+        //ex : dt : 0.016   MaxLife: 0.5 ---> reduce of 3.2% per frame
+        Life -= dt / MaxLife;
     }
 }

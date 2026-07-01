@@ -17,6 +17,7 @@ public class GameScreen : IScreen
     private Dictionary<string, SpriteFont> _fonts;
     private ScoreManager _scoreManager;
     private SoundManager _soundManager;
+    private ParticleManager _particleManager = new ParticleManager();
     private Paddle _player1;
     private Paddle _player2;
     private Ball _ball;
@@ -43,13 +44,14 @@ public class GameScreen : IScreen
         _player1 = new Paddle(20, 260, player1Up, player1Down);
         _player2 = new Paddle(765, 260, player2Up, player2Down);
 
-        _ball = new Ball(widthSize, heightSize, soundManager);
+        _ball = new Ball(widthSize, heightSize, soundManager, _particleManager);
 
 
     }
 
     public void Update(GameTime gameTime)
     {
+        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         KeyboardState currentKb = Keyboard.GetState();
 
         switch(_gameState)
@@ -58,6 +60,8 @@ public class GameScreen : IScreen
 
                 if(currentKb.IsKeyDown(Keys.Space) && _previousKb.IsKeyUp(Keys.Space))
                     _gameState = GameState.Playing;
+
+                _particleManager.Update(dt);
                 
                 break;
                     
@@ -79,6 +83,8 @@ public class GameScreen : IScreen
                     _soundManager.play("GameOver");
                     _gameState = GameState.GameOver;
                 }
+                _particleManager.Update(dt);
+
 
                 break;
 
@@ -90,6 +96,8 @@ public class GameScreen : IScreen
                     _ball.Reset();
                     _gameState = GameState.WaitingToStart;
                 }
+                _particleManager.Update(dt);
+
 
                 break;
 
@@ -116,6 +124,8 @@ public class GameScreen : IScreen
         _player2.Draw(_spriteBatch, _pixel);
 
         _ball.Draw(_spriteBatch, _pixel);
+
+        _particleManager.Draw(_spriteBatch,_pixel);
 
         //Message State
 

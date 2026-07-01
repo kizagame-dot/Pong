@@ -17,12 +17,14 @@ public class Ball
     private int _screenHeight;
     private Random _rng = new Random();
     private SoundManager _soundManager;
+    private ParticleManager _particleManager;
 
-    public Ball(int screenWidth, int screenHeight, SoundManager soundManager)
+    public Ball(int screenWidth, int screenHeight, SoundManager soundManager, ParticleManager particleManager)
     {
         _screenWidth = screenWidth;
         _screenHeight = screenHeight;
         _soundManager = soundManager;
+        _particleManager = particleManager;
         Reset();
 
     }
@@ -71,6 +73,11 @@ public class Ball
         {
             ApplyAngle(paddleLeft);
             _soundManager.play("HitPaddle");
+            _particleManager.Emit(
+                new Vector2(_position.X, _position.Y + BALL_SIZE/2f),
+                12,
+                Color.Yellow
+            );
 
         }
 
@@ -78,6 +85,11 @@ public class Ball
         {
             ApplyAngle(paddleRight);
             _soundManager.play("HitPaddle");
+            _particleManager.Emit(
+                new Vector2(_position.X, _position.Y + BALL_SIZE/2f),
+                12,
+                Color.Yellow
+            );
 
 
         }
@@ -86,6 +98,11 @@ public class Ball
         if(_position.X < 0)
         {
             _soundManager.play("Point");
+            _particleManager.Emit(
+                new Vector2(_position.X, _position.Y),
+                30,
+                Color.OrangeRed
+            );
             Reset();
             return 1;
         }
@@ -93,6 +110,11 @@ public class Ball
         if(_position.X > _screenWidth)
         {
             _soundManager.play("Point");
+            _particleManager.Emit(
+                new Vector2(_position.X, _position.Y),
+                30,
+                Color.OrangeRed
+            );
             Reset();
             return -1;
         }
