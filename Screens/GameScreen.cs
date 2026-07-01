@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -111,7 +110,7 @@ public class GameScreen : IScreen
         }
 
         //Score
-        _spriteBatch.DrawString(_fonts["Score"], $"{_scoreManager._textDisplay}", new Vector2(318, 20), Color.WhiteSmoke);
+        _spriteBatch.DrawString(_fonts["Score"], $"{_scoreManager.TextDisplay}", new Vector2(318, 20), Color.WhiteSmoke);
 
         _player1.Draw(_spriteBatch, _pixel);
         _player2.Draw(_spriteBatch, _pixel);
@@ -129,7 +128,7 @@ public class GameScreen : IScreen
             case GameState.GameOver:
             
                 _spriteBatch.DrawString(_fonts["Message"],
-                _scoreManager._scorePlayer1 > _scoreManager._scorePlayer2 ?
+                _scoreManager.ScorePlayer1 > _scoreManager.ScorePlayer2 ?
                 "GAME OVER : PLAYER 1 WIN" :
                 "GAME OVER : PLAYER 2 WIN",
                   new Vector2(270, 250), Color.LightGoldenrodYellow);

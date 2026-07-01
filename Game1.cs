@@ -23,10 +23,6 @@ public class Game1 : Game
     private SoundManager _soundManager;
     private Dictionary<string, SpriteFont> _fonts;
     
-    
-
-    
-
 
 
     public Game1()
@@ -36,10 +32,7 @@ public class Game1 : Game
         IsMouseVisible = true;
     }
 
-    public void SetScreen()
-    {
-        
-    }
+    
 
     protected override void Initialize()
     {

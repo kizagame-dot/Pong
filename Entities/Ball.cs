@@ -8,8 +8,8 @@ namespace Pong.Entities;
 public class Ball
 {
     
-    public const int BallSize = 12;
-    public Rectangle Bounds => new Rectangle((int)_position.X, (int)_position.Y, BallSize, BallSize);
+    public const int BALL_SIZE = 12;
+    public Rectangle Bounds => new Rectangle((int)_position.X, (int)_position.Y, BALL_SIZE, BALL_SIZE);
 
     private Vector2 _position;
     private Vector2 _velocity;
@@ -30,7 +30,7 @@ public class Ball
     public void Reset()
     {
         //Center the ball
-        _position = new Vector2(_screenWidth / 2f - BallSize / 2f,_screenHeight / 2f - BallSize / 2f);
+        _position = new Vector2(_screenWidth / 2f - BALL_SIZE / 2f,_screenHeight / 2f - BALL_SIZE / 2f);
 
         // Random Speed Initialize
         float angle = (float)(_rng.NextDouble() * 60 - 30);
@@ -58,9 +58,9 @@ public class Ball
             _velocity.Y = Math.Abs(_velocity.Y);
             _soundManager.play("HitWall");
         }
-        if(_position.Y + BallSize > _screenHeight)
+        if(_position.Y + BALL_SIZE > _screenHeight)
         {
-            _position.Y = _screenHeight - BallSize;
+            _position.Y = _screenHeight - BALL_SIZE;
             _velocity.Y = -Math.Abs(_velocity.Y);
             _soundManager.play("HitWall");
 
@@ -103,7 +103,7 @@ public class Ball
     public void ApplyAngle(Rectangle paddle)
     {
         float paddleCenter = paddle.Y + paddle.Height / 2f;
-        float ballCenter = _position.Y + BallSize / 2f;
+        float ballCenter = _position.Y + BALL_SIZE / 2f;
         float relativeHit = (ballCenter - paddleCenter) / (paddle.Height / 2f);
         relativeHit = MathHelper.Clamp(relativeHit, -1f, 1f);
 

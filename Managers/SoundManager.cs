@@ -8,7 +8,7 @@ namespace Pong.Managers;
 
 public class SoundManager
 {
-    private const int SAMPLE_RATE = 44100;
+    private const int _SAMPLE_RATE = 44100;
     private Dictionary<string, SoundEffect> _sounds;
     
     public SoundManager()
@@ -26,13 +26,13 @@ public class SoundManager
 
     public SoundEffect generateBeep(int frequency, double durationSec)
     {
-        int sampleCount = (int)(SAMPLE_RATE * durationSec); 
+        int sampleCount = (int)(_SAMPLE_RATE * durationSec); 
 
         short[] data = new short[sampleCount];
 
         for(int i = 0; i < sampleCount; i++)
         {
-             double t = (double)i  / SAMPLE_RATE;
+             double t = (double)i  / _SAMPLE_RATE;
 
              data[i] = (short)(short.MaxValue * 0.5 * Math.Sin(2 * Math.PI * frequency * t));
         }
@@ -41,7 +41,7 @@ public class SoundManager
 
         Buffer.BlockCopy(data, 0, bytes, 0 , bytes.Length);
 
-        return new SoundEffect(bytes, SAMPLE_RATE, AudioChannels.Mono);
+        return new SoundEffect(bytes, _SAMPLE_RATE, AudioChannels.Mono);
     }
 
     public void play(string sound)
